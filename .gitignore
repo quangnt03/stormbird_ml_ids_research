@@ -1,0 +1,47 @@
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+.venv/
+venv/
+env/
+
+# Model files
+*.h5
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.sav
+
+# DVC cache and files
+.dvc/
+*.dvc
+*.dvclive/
+.dvcignore
+
+# Data files
+data/
+*.csv
+*.tsv
+*.xlsx
+*.json
+
+# Logs and outputs
+logs/
+*.log
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
