@@ -20,12 +20,6 @@ env/
 *.sav
 
 
-# Data files
-data/
-*.csv
-*.tsv
-*.xlsx
-*.json
 
 # Logs and outputs
 logs/
