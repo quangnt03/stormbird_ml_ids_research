@@ -1,0 +1,5 @@
+outs:
+- md5: be31d7571e38a2af28cad3e586499231
+  size: 292019586
+  hash: md5
+  path: cicids2017_preprocessed.parquet
