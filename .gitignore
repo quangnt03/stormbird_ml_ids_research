@@ -19,11 +19,6 @@ env/
 *.joblib
 *.sav
 
-# DVC cache and files
-.dvc/
-*.dvc
-*.dvclive/
-.dvcignore
 
 # Data files
 data/
