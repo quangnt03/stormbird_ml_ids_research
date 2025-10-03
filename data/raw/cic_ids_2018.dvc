@@ -1,0 +1,6 @@
+outs:
+- md5: 56dcd6239751e7406ecab2e1d8387ec2.dir
+  size: 6886649507
+  nfiles: 10
+  hash: md5
+  path: cic_ids_2018
