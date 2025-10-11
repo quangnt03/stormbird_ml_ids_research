@@ -4,13 +4,11 @@
 # Python bytecode
 __pycache__/
 *.py[cod]
-
 # Environment files
 .env
 .venv/
 venv/
 env/
-
 # Model files
 *.h5
 *.pt
@@ -18,20 +16,20 @@ env/
 *.pkl
 *.joblib
 *.sav
-
-
-
 # Logs and outputs
 logs/
 *.log
 *.out
-
 # OS-specific files
 .DS_Store
 Thumbs.db
-
 # IDE and editor files
 .vscode/
 .idea/
 *.swp
 /tmp
+# DVC-managed outputs
+data/processed/
+data/splits/
+models/
+results/
