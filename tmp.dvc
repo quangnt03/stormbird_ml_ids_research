@@ -1,0 +1,6 @@
+outs:
+- md5: 4fda5715aec8c3fb85de4cb623285a7b.dir
+  size: 20
+  nfiles: 1
+  hash: md5
+  path: tmp
