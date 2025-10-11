@@ -2,27 +2,32 @@ stages:
   preprocess:
     cmd: python src/preprocess.py
     deps:
-      - src/preprocess.py
-      - configs/default.yaml
+    - src/preprocess.py
+    - configs/default.yaml
     outs:
-      - data/processed/
+    - data/processed/
 
   train:
     cmd: python src/train.py
     deps:
-      - src/train.py
-      - data/processed/processed.csv
-      - configs/default.yaml
+    - src/train.py
+    - data/processed/processed.csv
+    - configs/default.yaml
     outs:
-      - data/splits/
-      - models/model.pkl
+    - data/splits/
+    - models/model.pkl
 
   evaluate:
     cmd: python src/evaluate.py
     deps:
-      - src/evaluate.py
-      - data/splits/train.csv
-      - data/splits/test.csv
-      - models/model.pkl
+    - src/evaluate.py
+    - data/splits/train.csv
+    - data/splits/test.csv
+    - models/model.pkl
     outs:
-      - results/live/
+    - results/live/
+metrics:
+- results/live/metrics.json
+plots:
+- results/live/plots/metrics:
+    x: step
