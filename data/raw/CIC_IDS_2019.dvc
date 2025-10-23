@@ -1,0 +1,11 @@
+md5: f19984bc1c8d4b4c99976c7531b7dade
+frozen: true
+deps:
+- md5: 09b01f5c5cc6759394dfc90ec5dd7abf.dir
+  size: 13008866718
+  nfiles: 10
+  hash: md5
+  path: gs://stormbird-ad-datasets/raw/CIC_IDS_2019
+outs:
+- hash: md5
+  path: CIC_IDS_2019
