@@ -1,0 +1,38 @@
+[
+    {
+        "model": "XGBoost",
+        "date": "2025-10-02",
+        "dataset": "CICIDS2018",
+        "f1_train": 0.994,
+        "f1_cv_mean": 0.994,
+        "f1_test": 0.99,
+        "train_time_sec": 25.452,
+        "mean_infer_time_sec": 8.33e-07,
+        "cpu_usage_percent_train": 343.3,
+        "peak_memory_mb_train": 35952.71484,
+        "gpu_util_percent_train": 80,
+        "gpu_mem_mb_train": 1639.125,
+        "cpu_usage_percent_test": 480.4,
+        "peak_memory_mb_test": 35139.7,
+        "gpu_util_percent_test": 56,
+        "gpu_mem_mb_test": 165.125
+    },
+    {
+        "model": "LightGBM",
+        "date": "2025-10-02",
+        "dataset": "CICIDS2018",
+        "f1_train": 0.996,
+        "f1_cv_mean": 0.996,
+        "f1_test": 1.0,
+        "train_time_sec": 184.0,
+        "mean_infer_time_sec": 1.5e-05,
+        "cpu_usage_percent_train": 547.8,
+        "peak_memory_mb_train": 24260.67578,
+        "gpu_util_percent_train": 11,
+        "gpu_mem_mb_train": 1229.125,
+        "cpu_usage_percent_test": 590.7,
+        "peak_memory_mb_test": 24299.4609,
+        "gpu_util_percent_test": 0,
+        "gpu_mem_mb_test": 1229.125
+    }
+]

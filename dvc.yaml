@@ -1,33 +1,196 @@
 stages:
-  preprocess:
-    cmd: python src/preprocess.py
-    deps:
-    - src/preprocess.py
-    - configs/default.yaml
-    outs:
-    - data/processed/
+  # ========================================
+  # CICIDS2017 Shared Preprocessing
+  # ========================================
 
-  train:
-    cmd: python src/train.py
+  preprocess_cicids2017:
+    cmd: python scripts/preprocess.py --config configs/cicids2017_xgb.yaml
     deps:
-    - src/train.py
-    - data/processed/processed.csv
-    - configs/default.yaml
+    - scripts/preprocess.py
+    - data/raw/cic_ids_2017
+    - configs/cicids2017_xgb.yaml
     outs:
-    - data/splits/
-    - models/model.pkl
+    - data/processed/cicids2017/train.parquet
+    - data/processed/cicids2017/test.parquet
 
-  evaluate:
-    cmd: python src/evaluate.py
+  # ========================================
+  # CICIDS2017 XGBoost Pipeline
+  # ========================================
+
+  train_cicids2017_xgb:
+    cmd: python scripts/train_model.py --config configs/cicids2017_xgb.yaml
     deps:
-    - src/evaluate.py
-    - data/splits/train.csv
-    - data/splits/test.csv
-    - models/model.pkl
+    - scripts/train_model.py
+    - data/processed/cicids2017/train.parquet
+    - configs/cicids2017_xgb.yaml
+    - params/cicids2017_xgb_params.json
     outs:
-    - results/live/
+    - models/cicids2017_xgb.pkl
+    plots:
+    - results/cicids2017_xgb_training_history.json:
+        template: .dvc/plots/training_curves.json
+        cache: false
+
+  evaluate_cicids2017_xgb:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2017_xgb.yaml
+    deps:
+    - scripts/evaluate_model.py
+    - models/cicids2017_xgb.pkl
+    - data/processed/cicids2017/test.parquet
+    - configs/cicids2017_xgb.yaml
+    metrics:
+    - results/cicids2017_xgb_metrics.json:
+        cache: false
+    plots:
+    - results/cicids2017_xgb_confusion_matrix.png:
+        cache: false
+
+  # ========================================
+  # CICIDS2017 LightGBM Pipeline
+  # ========================================
+
+  train_cicids2017_lgbm:
+    cmd: python scripts/train_model.py --config configs/cicids2017_lgbm.yaml
+    deps:
+    - scripts/train_model.py
+    - data/processed/cicids2017/train.parquet
+    - configs/cicids2017_lgbm.yaml
+    - params/cicids2017_lgbm_params.json
+    outs:
+    - models/cicids2017_lgbm.pkl
+    plots:
+    - results/cicids2017_lgbm_training_history.json:
+        template: .dvc/plots/training_curves.json
+        cache: false
+
+  evaluate_cicids2017_lgbm:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2017_lgbm.yaml
+    deps:
+    - scripts/evaluate_model.py
+    - models/cicids2017_lgbm.pkl
+    - data/processed/cicids2017/test.parquet
+    - configs/cicids2017_lgbm.yaml
+    metrics:
+    - results/cicids2017_lgbm_metrics.json:
+        cache: false
+    plots:
+    - results/cicids2017_lgbm_confusion_matrix.png:
+        cache: false
+
+  # ========================================
+  # CICIDS2018 Shared Preprocessing
+  # ========================================
+
+  preprocess_cicids2018:
+    cmd: python scripts/preprocess.py --config configs/cicids2018_xgb.yaml
+    deps:
+    - scripts/preprocess.py
+    - data/raw/cic_ids_2018
+    - configs/cicids2018_xgb.yaml
+    outs:
+    - data/processed/cicids2018/train.parquet
+    - data/processed/cicids2018/test.parquet
+
+  # ========================================
+  # CICIDS2018 XGBoost Pipeline
+  # ========================================
+
+  train_cicids2018_xgb:
+    cmd: python scripts/train_model.py --config configs/cicids2018_xgb.yaml
+    deps:
+    - scripts/train_model.py
+    - data/processed/cicids2018/train.parquet
+    - configs/cicids2018_xgb.yaml
+    - params/cicids2018_xgb_params.json
+    outs:
+    - models/cicids2018_xgb.pkl
+    plots:
+    - results/cicids2018_xgb_training_history.json:
+        template: .dvc/plots/training_curves.json
+        cache: false
+
+  evaluate_cicids2018_xgb:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2018_xgb.yaml
+    deps:
+    - scripts/evaluate_model.py
+    - models/cicids2018_xgb.pkl
+    - data/processed/cicids2018/test.parquet
+    - configs/cicids2018_xgb.yaml
+    metrics:
+    - results/cicids2018_xgb_metrics.json:
+        cache: false
+    plots:
+    - results/cicids2018_xgb_confusion_matrix.png:
+        cache: false
+
+  # ========================================
+  # CICIDS2018 LightGBM Pipeline
+  # ========================================
+
+  train_cicids2018_lgbm:
+    cmd: python scripts/train_model.py --config configs/cicids2018_lgbm.yaml
+    deps:
+    - scripts/train_model.py
+    - data/processed/cicids2018/train.parquet
+    - configs/cicids2018_lgbm.yaml
+    - params/cicids2018_lgbm_params.json
+    outs:
+    - models/cicids2018_lgbm.pkl
+    plots:
+    - results/cicids2018_lgbm_training_history.json:
+        template: .dvc/plots/training_curves.json
+        cache: false
+
+  evaluate_cicids2018_lgbm:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2018_lgbm.yaml
+    deps:
+    - scripts/evaluate_model.py
+    - models/cicids2018_lgbm.pkl
+    - data/processed/cicids2018/test.parquet
+    - configs/cicids2018_lgbm.yaml
+    metrics:
+    - results/cicids2018_lgbm_metrics.json:
+        cache: false
+    plots:
+    - results/cicids2018_lgbm_confusion_matrix.png:
+        cache: false
+
+# ========================================
+# Metrics and Plots
+# ========================================
 metrics:
 - results/live/metrics.json
+- results/cicids2017_xgb_metrics.json
+- results/cicids2017_lgbm_metrics.json
+- results/cicids2018_xgb_metrics.json
+- results/cicids2018_lgbm_metrics.json
+
 plots:
 - results/live/plots/metrics:
     x: step
+# Confusion matrices
+- results/cicids2017_xgb_confusion_matrix.png
+- results/cicids2017_lgbm_confusion_matrix.png
+- results/cicids2018_xgb_confusion_matrix.png
+- results/cicids2018_lgbm_confusion_matrix.png
+# Training history curves
+- results/cicids2017_xgb_training_history.json:
+    template: .dvc/plots/training_curves.json
+    x: iteration
+    y:
+      results/cicids2017_xgb_training_history.json: train_logloss
+- results/cicids2017_lgbm_training_history.json:
+    template: .dvc/plots/training_curves.json
+    x: iteration
+    y:
+      results/cicids2017_lgbm_training_history.json: train_logloss
+- results/cicids2018_xgb_training_history.json:
+    template: .dvc/plots/training_curves.json
+    x: iteration
+    y:
+      results/cicids2018_xgb_training_history.json: train_logloss
+- results/cicids2018_lgbm_training_history.json:
+    template: .dvc/plots/training_curves.json
+    x: iteration
+    y:
+      results/cicids2018_lgbm_training_history.json: train_logloss

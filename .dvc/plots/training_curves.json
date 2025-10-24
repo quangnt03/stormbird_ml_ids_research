@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": "<DVC_METRIC_DATA>"
+  },
+  "title": "Training and Validation Loss",
+  "width": 700,
+  "height": 450,
+  "transform": [
+    {
+      "fold": ["train_logloss", "val_logloss"],
+      "as": ["metric", "loss"]
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": false,
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "iteration",
+      "type": "quantitative",
+      "title": "Training Iteration",
+      "axis": {
+        "grid": true,
+        "gridOpacity": 0.3
+      }
+    },
+    "y": {
+      "field": "loss",
+      "type": "quantitative",
+      "title": "Log Loss",
+      "scale": {
+        "zero": false
+      },
+      "axis": {
+        "grid": true,
+        "gridOpacity": 0.3
+      }
+    },
+    "color": {
+      "field": "metric",
+      "type": "nominal",
+      "title": "Dataset",
+      "scale": {
+        "domain": ["train_logloss", "val_logloss"],
+        "range": ["#1f77b4", "#ff7f0e"]
+      },
+      "legend": {
+        "orient": "top-right",
+        "labelExpr": "datum.label == 'train_logloss' ? 'Training' : 'Validation'"
+      }
+    },
+    "strokeDash": {
+      "field": "metric",
+      "type": "nominal",
+      "scale": {
+        "domain": ["train_logloss", "val_logloss"],
+        "range": [[1, 0], [5, 3]]
+      },
+      "legend": null
+    }
+  },
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 14
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 14
+    },
+    "title": {
+      "fontSize": 16,
+      "fontWeight": "bold"
+    }
+  }
+}

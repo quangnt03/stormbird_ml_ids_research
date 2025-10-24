@@ -1,0 +1,19 @@
+{
+  "objective": "binary",
+  "device": "gpu",
+  "verbosity": 0,
+  "boosting_type": "goss",
+  "num_leaves": 54,
+  "max_depth": 6,
+  "learning_rate": 0.03168606336446395,
+  "n_estimators": 376,
+  "subsample": 0.9732773502317136,
+  "tree_learner": "serial",
+  "colsample_bytree": 0.7779246297003738,
+  "min_child_samples": 46,
+  "min_child_weight": 0.0049656088026181445,
+  "lambda_l1": 3.485203479609063e-07,
+  "lambda_l2": 0.0012932480056061738,
+  "extra_trees": false,
+  "feature_fraction": 0.8969128906566174
+}

@@ -1,0 +1,54 @@
+dataset:
+  name: cicids2018
+  raw_path: data/raw/cic_ids_2018
+  processed_dir: data/processed/cicids2018
+
+preprocessing:
+  # CICIDS2018 uses simpler preprocessing (no undersampling/SMOTE)
+  # Just binary classification: Normal vs Attack
+
+  # Disable undersampling for CICIDS2018
+  undersampling:
+    enabled: false
+
+  # Disable oversampling for CICIDS2018
+  oversampling:
+    enabled: false
+
+  # Feature scaling
+  scaler: RobustScaler
+
+  # Train/test split
+  test_size: 0.2
+  random_state: 42
+
+  # Label mapping (multiclass to binary)
+  # Map all attack types to 1, Normal to 0
+  label_mapping:
+    Benign: 0
+    Normal: 0
+    DoS: 1
+    DDoS: 1
+    Botnet: 1
+    BruteForce: 1
+    Infilteration: 1
+    DoS attacks-Hulk: 1
+    DoS attacks-SlowHTTPTest: 1
+    DoS attacks-GoldenEye: 1
+    DoS attacks-Slowloris: 1
+    DDOS attack-HOIC: 1
+    DDOS attack-LOIC-UDP: 1
+    Bot: 1
+    FTP-BruteForce: 1
+    SSH-Bruteforce: 1
+
+model:
+  type: lightgbm
+  params_file: params/cicids2018_lgbm_params.json
+
+output:
+  model_path: models/cicids2018_lgbm.pkl
+  metrics_path: results/cicids2018_lgbm_metrics.json
+  training_history_path: results/cicids2018_lgbm_training_history.json
+  confusion_matrix_path: results/cicids2018_lgbm_confusion_matrix.png
+  classification_report_path: results/cicids2018_lgbm_classification_report.txt

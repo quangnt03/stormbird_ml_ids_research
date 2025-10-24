@@ -8,7 +8,6 @@ scikit-learn
 matplotlib
 seaborn
 tensorflow
-pytorch
 xgboost
 lightgbm
 lime 
@@ -18,5 +17,7 @@ optuna
 kagglehub
 imbalanced-learn
 pynvml
-google-colab
+optuna
 gdown
+pyarrow
+fastparquet 

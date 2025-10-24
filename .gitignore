@@ -46,4 +46,4 @@ CLAUDE.md
 data/processed/
 data/splits/
 models/
-results/
+.dvc/config

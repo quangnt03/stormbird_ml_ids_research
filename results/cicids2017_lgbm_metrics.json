@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.9989153130197828,
+  "precision_weighted": 0.9989196100434676,
+  "recall_weighted": 0.9989153130197828,
+  "f1_weighted": 0.9989162326655322,
+  "inference_time_total_seconds": 1.2048382759094238,
+  "inference_time_per_sample_seconds": 2.1319288599451884e-06,
+  "test_samples": 565140,
+  "num_features": 78,
+  "precision_binary": 0.9950078115179485,
+  "recall_binary": 0.9994859075535513,
+  "f1_binary": 0.9972418323592007,
+  "roc_auc": 0.9999317881229675
+}

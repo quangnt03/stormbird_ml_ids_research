@@ -67,3 +67,141 @@ stages:
       md5: edde6f605eb4ca5c4aa380a6c2e25ac2.dir
       size: 202
       nfiles: 4
+  preprocess_cicids2017:
+    cmd: python scripts/preprocess_cicids2017.py --config 
+      configs/cicids2017_xgb.yaml
+    deps:
+    - path: configs/cicids2017_xgb.yaml
+      hash: md5
+      md5: d1a7d45765bea8449993ef2860c66c0f
+      size: 1440
+    - path: data/raw/cic_ids_2017
+      hash: md5
+      md5: acf928b43f089e74039fc8dba08e4dd7.dir
+      size: 884645759
+      nfiles: 8
+    - path: scripts/preprocess_cicids2017.py
+      hash: md5
+      md5: 95a5e3a092bd0d1b97e8b8331ddc5132
+      size: 9117
+    outs:
+    - path: data/processed/cicids2017/test.parquet
+      hash: md5
+      md5: bbb27f2945b7f5b973735d088c71ad90
+      size: 83308013
+    - path: data/processed/cicids2017/train.parquet
+      hash: md5
+      md5: 4ccaae61dd0b014f3f57b361bafcf1dd
+      size: 132833536
+  train_cicids2017_xgb:
+    cmd: python scripts/train_model.py --config configs/cicids2017_xgb.yaml
+    deps:
+    - path: configs/cicids2017_xgb.yaml
+      hash: md5
+      md5: d1a7d45765bea8449993ef2860c66c0f
+      size: 1440
+    - path: data/processed/cicids2017/train.parquet
+      hash: md5
+      md5: 4ccaae61dd0b014f3f57b361bafcf1dd
+      size: 132833536
+    - path: params/cicids2017_xgb_params.json
+      hash: md5
+      md5: 4de8a66ce1ab0f6ee7342c0acfaaa47b
+      size: 790
+    - path: scripts/train_model.py
+      hash: md5
+      md5: 0b02eabf9b6141001b712c77f9c76bf8
+      size: 7130
+    outs:
+    - path: models/cicids2017_xgb.pkl
+      hash: md5
+      md5: be7ae59fd8bb60e2a3a1db4ff49a1fae
+      size: 1171636
+    - path: results/cicids2017_xgb_training_history.json
+      hash: md5
+      md5: 436b4276658073122942da57e442644e
+      size: 51097
+  evaluate_cicids2017_xgb:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2017_xgb.yaml
+    deps:
+    - path: configs/cicids2017_xgb.yaml
+      hash: md5
+      md5: d1a7d45765bea8449993ef2860c66c0f
+      size: 1440
+    - path: data/processed/cicids2017/test.parquet
+      hash: md5
+      md5: bbb27f2945b7f5b973735d088c71ad90
+      size: 83308013
+    - path: models/cicids2017_xgb.pkl
+      hash: md5
+      md5: be7ae59fd8bb60e2a3a1db4ff49a1fae
+      size: 1171636
+    - path: scripts/evaluate_model.py
+      hash: md5
+      md5: 05deb8cf1ee26e434593a72e3010c900
+      size: 7567
+    outs:
+    - path: results/cicids2017_xgb_confusion_matrix.png
+      hash: md5
+      md5: de4f74c2fbdeca9a2eaed61c8b75e72f
+      size: 45587
+    - path: results/cicids2017_xgb_metrics.json
+      hash: md5
+      md5: 3799b02c4877d8a04c78f12d958f8e96
+      size: 481
+  train_cicids2017_lgbm:
+    cmd: python scripts/train_model.py --config configs/cicids2017_lgbm.yaml
+    deps:
+    - path: configs/cicids2017_lgbm.yaml
+      hash: md5
+      md5: 5ad9ec46a5e77f86700f8cd19fed8851
+      size: 1447
+    - path: data/processed/cicids2017/train.parquet
+      hash: md5
+      md5: 4ccaae61dd0b014f3f57b361bafcf1dd
+      size: 132833536
+    - path: params/cicids2017_lgbm_params.json
+      hash: md5
+      md5: 633527defa1b078a36569bb6eb8e9e24
+      size: 531
+    - path: scripts/train_model.py
+      hash: md5
+      md5: 0b02eabf9b6141001b712c77f9c76bf8
+      size: 7130
+    outs:
+    - path: models/cicids2017_lgbm.pkl
+      hash: md5
+      md5: 251af10195d7f3820d98570f867bb6e4
+      size: 1503060
+    - path: results/cicids2017_lgbm_training_history.json
+      hash: md5
+      md5: 676dcdecfd7bee1e66e5dd67bb0134d3
+      size: 44300
+  evaluate_cicids2017_lgbm:
+    cmd: python scripts/evaluate_model.py --config configs/cicids2017_lgbm.yaml
+    deps:
+    - path: configs/cicids2017_lgbm.yaml
+      hash: md5
+      md5: 5ad9ec46a5e77f86700f8cd19fed8851
+      size: 1447
+    - path: data/processed/cicids2017/test.parquet
+      hash: md5
+      md5: bbb27f2945b7f5b973735d088c71ad90
+      size: 83308013
+    - path: models/cicids2017_lgbm.pkl
+      hash: md5
+      md5: 251af10195d7f3820d98570f867bb6e4
+      size: 1503060
+    - path: scripts/evaluate_model.py
+      hash: md5
+      md5: 05deb8cf1ee26e434593a72e3010c900
+      size: 7567
+    outs:
+    - path: results/cicids2017_lgbm_confusion_matrix.png
+      hash: md5
+      md5: 6de25eb64fabfc81142a259a11f30284
+      size: 35457
+    - path: results/cicids2017_lgbm_metrics.json
+      hash: md5
+      md5: d4f323374627ddd2014e299382f34266
+      size: 485

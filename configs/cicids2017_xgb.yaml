@@ -1,0 +1,57 @@
+dataset:
+  name: cicids2017
+  raw_path: data/raw/cic_ids_2017
+  processed_dir: data/processed/cicids2017
+
+preprocessing:
+  # First apply undersampling to reduce Normal Traffic (class 0 = BENIGN)
+  undersampling:
+    enabled: true
+    strategy:
+      0: 500000  # BENIGN class
+    random_state: 42
+
+  # Then apply oversampling to minority classes (class 1 = all attacks)
+  oversampling:
+    enabled: true
+    method: SMOTE
+    strategy:
+      1: 450000  # All attacks combined
+    random_state: 42
+
+  # Feature scaling
+  scaler: RobustScaler
+
+  # Train/test split
+  test_size: 0.2
+  random_state: 42
+
+  # Label mapping (multiclass to binary)
+  # Map BENIGN to 0, all attacks to 1
+  label_mapping:
+    BENIGN: 0
+    Bot: 1
+    DDoS: 1
+    DoS GoldenEye: 1
+    DoS Hulk: 1
+    DoS Slowhttptest: 1
+    DoS slowloris: 1
+    FTP-Patator: 1
+    Heartbleed: 1
+    Infiltration: 1
+    PortScan: 1
+    SSH-Patator: 1
+    Web Attack Brute Force: 1
+    Web Attack Sql Injection: 1
+    Web Attack XSS: 1
+
+model:
+  type: xgboost
+  params_file: params/cicids2017_xgb_params.json
+
+output:
+  model_path: models/cicids2017_xgb.pkl
+  metrics_path: results/cicids2017_xgb_metrics.json
+  training_history_path: results/cicids2017_xgb_training_history.json
+  confusion_matrix_path: results/cicids2017_xgb_confusion_matrix.png
+  classification_report_path: results/cicids2017_xgb_classification_report.txt
