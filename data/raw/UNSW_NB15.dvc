@@ -1,0 +1,11 @@
+md5: 95af23236e290f6a2fbe049196588a0c
+frozen: true
+deps:
+- md5: d1d10cc439740aaeb5dde29904d65f9e.dir
+  size: 673001502
+  nfiles: 8
+  hash: md5
+  path: gs://stormbird-ad-datasets/raw/UNSW_NB15
+outs:
+- hash: md5
+  path: UNSW_NB15
