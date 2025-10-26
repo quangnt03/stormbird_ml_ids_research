@@ -1,11 +1,6 @@
 [core]
-    remote = myremote
-['remote "gcp"']
-    url = gs://stormbird-ad-datasets
-    credentialpath = ../.credentials/stormbird-vn-svac-2e541f116f50.json
-['remote "myremote"']
-    url = gs://stormbird-ad-datasets
-    credentialpath = ../.credentials/stormbird-vn-svac-2e541f116f50.json
     remote = gcs
-['remote "gcs"']
+
+[remote "gcs"]
     url = gs://stormbird-ad-datasets/dvc-cache
+    credentialpath = ../.credentials/stormbird-vn-svac-2e541f116f50.json
